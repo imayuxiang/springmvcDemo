@@ -1,0 +1,22 @@
+apply plugin: 'idea'
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+    maven { url "http://repo.spring.io/release" }
+}
+
+dependencies {
+    compile(
+            "org.springframework:spring-context:4.0.5.RELEASE",
+            "org.springframework:spring-web:4.0.5.RELEASE",
+            "org.springframework:spring-webmvc:4.0.5.RELEASE"
+    )
+    testCompile("org.springframework:spring-test:4.0.5.RELEASE")
+    runtime("jstl:jstl:1.2")
+}
+
+task copyJars(type: Copy) {
+    from configurations.runtime
+    into 'lib' // 目标位置
+}
